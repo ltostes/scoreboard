@@ -10,3 +10,13 @@ def index(request):
     player = Player.objects.filter(id=1)[0]
     context = {"player_name": player.name, "time_2": 5}
     return render(request,'mainapp/homepage_view.html', context)
+
+def teams(request):
+
+    context = {}
+    return render(request,'mainapp/team_view.html', context)
+
+def current_match(request):
+
+    context = {}
+    return render(request,'mainapp/current_match.html', context)
