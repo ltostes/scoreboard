@@ -11,9 +11,10 @@ def index(request):
     context = {"player_name": player.name, "time_2": 5}
     return render(request,'mainapp/homepage_view.html', context)
 
-def teams(request):
+def teams(request, team_id):
+    # Search for team on db and fetch data
 
-    context = {}
+    context = {"team_name": team_id}
     return render(request,'mainapp/team_view.html', context)
 
 def current_match(request):
