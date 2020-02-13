@@ -8,6 +8,79 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.onoffswitch3
+{
+    position: relative; 
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+
+.onoffswitch3-checkbox {
+    display: none;
+}
+
+.onoffswitch3-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 0px solid #999999; border-radius: 0px;
+}
+
+.onoffswitch3-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch3-inner > span {
+    display: block; float: left; position: relative; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: 'Montserrat', sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+.onoffswitch3-inner .onoffswitch3-active {
+    padding-left: 10px;
+    background-color: #EEEEEE; color: #FFFFFF;
+}
+
+.onoffswitch3-inner .onoffswitch3-inactive {
+    width: 100px;
+    padding-left: 16px;
+    background-color: #EEEEEE; color: #FFFFFF;
+    text-align: right;
+}
+
+.onoffswitch3-switch {
+    display: block; width: 50%; margin: 0px; text-align: center; 
+    border: 0px solid #999999;border-radius: 0px; 
+    position: absolute; top: 0; bottom: 0;
+}
+.onoffswitch3-active .onoffswitch3-switch {
+    background: #27A1CA; left: 0;
+    width: 160px;
+}
+.onoffswitch3-inactive{
+    background: #A1A1A1; right: 0;
+    width: 20px;
+}
+.onoffswitch3-checkbox:checked + .onoffswitch3-label .onoffswitch3-inner {
+    margin-left: 0;
+}
+
+.glyphicon-remove{
+    padding: 3px 0px 0px 0px;
+    color: #fff;
+    background-color: #000;
+    height: 25px;
+    width: 25px;
+    border-radius: 15px;
+    border: 2px solid #fff;
+}
+
+.scroll-text{
+    color: #000;
+}
+
+
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
       margin-bottom: 0;
@@ -87,40 +160,62 @@
 
 <div class="container-fluid text-center">
   <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>{{sport_draw}}</p> <!-- Add the draw image here with the current and future matches -->
+    <div class="col-sm-4 sidenav">
+      <div class="score row">
+        <div class="col-sm-12 ">
+          <div class="well">
+            24:00:00
+          </div>
+        </div>
+      </div>
+      <div class="score row">
+        <div class="col-sm-12 ">
+          <div class="well">
+            <p>{{sport_draw}}</p> <!-- Add the draw image here with the current and future matches -->
+          </div>
+        </div>
       </div>
     </div>
     <div class="team-containers">
-        <div class="col-sm-8 text-center team-div">
-            <h1>{{team_one}}</h1>
-            <div class="score-points">
-                <p>18</p>
-            </div>
-            <hr>
-            <h3>Players</h3>
-            <!-- There needs to be a for loop here that goes through all players in that team-->
-            <p>{{player_name}}<p>
-        </div>
-        <div class="col-sm-8 text-center team-div">
-            <h1>{{team_two}}</h1>
-            <div class="score-points">
-                <p>13</p>
-            </div>
-            <hr>
-            <h3>Players</h3>
-            <!-- There needs to be a for loop here that goes through all players in that team-->
-            <p>{{player_name}}<p>
+      <div class="col-sm-8">
+        <div class="score row">
+          <div class="col-sm-6 text-center team-div">
+              <h1>{{team_one}}</h1>
+              <div class="score-points">
+                  <p>18</p>
+              </div>
+              <hr>
+              <h3>Players</h3>
+              <!-- There needs to be a for loop here that goes through all players in that team-->
+              <p>{{player_name}}<p>
+          </div>
+          <div class="col-sm-6 text-center team-div">
+              <h1>{{team_two}}</h1>
+              <div class="score-points">
+                  <p>13</p>
+              </div>
+              <hr>
+              <h3>Players</h3>
+              <!-- There needs to be a for loop here that goes through all players in that team-->
+              <p>{{player_name}}<p>
+          </div>
         </div> 
-    </div>
-
-    <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>{{random_facts_1}}</p>
-      </div>
-      <div class="well">
-        <p>{{random_facts_2}}</p>
+        <div class="score row">
+          <div class="col-sm-12">
+            <div class="onoffswitch3">
+                <input type="checkbox" name="onoffswitch3" class="onoffswitch3-checkbox" id="myonoffswitch3" checked>
+                <label class="onoffswitch3-label" for="myonoffswitch3">
+                    <span class="onoffswitch3-inner">
+                        <span class="onoffswitch3-active">
+                            <marquee class="scroll-text">{{novidade}}</marquee>
+                            <span class="onoffswitch3-switch">JOGOS DE INVERNO <span class="glyphicon glyphicon-remove"></span></span>
+                        </span>
+                        <span class="onoffswitch3-inactive"><span class="onoffswitch3-switch">SHOW BREAKING NEWS</span></span>
+                    </span>
+                </label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
