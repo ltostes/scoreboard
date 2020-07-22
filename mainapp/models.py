@@ -102,6 +102,11 @@ class Match(models.Model):
     finish_time   = models.DateTimeField(blank=True, null=True)
 
     playoff_round = models.CharField(max_length=3, choices=PLAYOFFROUND_CHOICES,blank=True, null=True)
+
+    def __str__(self):
+        if self.competition.sport.playoffs:
+            return str(self.playoff_round) + " of " + str(self.competition)
+        return str(self.competition)
     
 
 class Score(models.Model):
@@ -110,6 +115,9 @@ class Score(models.Model):
 
     scored      = models.IntegerField(default = 0)
 
+    def __str__(self):
+        return str(self.team) + " scored " + str(self.scored) + " in " + str(self.match)
+    
 
 class Point(models.Model):
     participant = models.ForeignKey(Participant, on_delete=models.SET_NULL, blank=True, null=True)
